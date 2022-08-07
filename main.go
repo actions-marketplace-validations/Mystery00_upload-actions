@@ -18,7 +18,7 @@ var (
 	titleFlag    = flag.String("title", "", "")
 	mimeTypeFlag = flag.String("mimeType", "", "")
 	stFlag       = flag.String("st", "", "")
-	filePathFlag = flag.String("  filePath", "", "")
+	filePathFlag = flag.String("filePath", "", "")
 )
 
 var (
