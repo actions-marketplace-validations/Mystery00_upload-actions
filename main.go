@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"flag"
 	"fmt"
 	"github.com/tidwall/gjson"
 	"io"
@@ -14,43 +13,14 @@ import (
 )
 
 var (
-	signUrlFlag  = flag.String("signUrl", "", "")
-	titleFlag    = flag.String("title", "", "")
-	mimeTypeFlag = flag.String("mimeType", "", "")
-	stFlag       = flag.String("st", "", "")
-	filePathFlag = flag.String("filePath", "", "")
-)
-
-var (
-	signUrl  = ""
-	title    = ""
-	mimeType = ""
-	st       = ""
-	filePath = ""
+	signUrl  = os.Args[1]
+	mimeType = os.Args[2]
+	st       = os.Args[3]
+	filePath = os.Args[4]
+	title    = os.Args[5]
 )
 
 func main() {
-	flag.PrintDefaults()
-	flag.Parse()
-	for i := 0; i < flag.NArg(); i++ {
-		if i > 0 {
-			if *signUrlFlag != "" {
-				signUrl = *signUrlFlag
-			}
-			if *titleFlag != "" {
-				title = *titleFlag
-			}
-			if *mimeTypeFlag != "" {
-				mimeType = *mimeTypeFlag
-			}
-			if *stFlag != "" {
-				st = *stFlag
-			}
-			if *filePathFlag != "" {
-				filePath = *filePathFlag
-			}
-		}
-	}
 	if signUrl == "" {
 		panic("signUrl is empty")
 	}
