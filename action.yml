@@ -24,13 +24,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - -signUrl
     - ${{ inputs.signUrl }}
-    - -mimeType
     - ${{ inputs.mimeType }}
-    - -st
     - ${{ inputs.st }}
-    - -filePath
     - ${{ inputs.filePath }}
-    - -title
     - ${{ inputs.title }}
