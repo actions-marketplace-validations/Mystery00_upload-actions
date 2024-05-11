@@ -97,7 +97,8 @@ func main() {
 
 	resId := gjson.Get(string(responseBody), "resourceId").String()
 	//fmt.Printf(`echo "resId=%s" >> $GITHUB_OUTPUT`, resId)
-	fmt.Printf(`::set-output name=resId::%s`, resId)
+	// fmt.Printf(`::set-output name=resId::%s`, resId)
+	appendFile(fmt.Sprintf("resId=%s", resId))
 }
 
 func uploadFile(url string, params map[string]string, filename string, file io.Reader) ([]byte, error) {
@@ -134,4 +135,16 @@ func uploadFile(url string, params map[string]string, filename string, file io.R
 func IsExists(path string) (os.FileInfo, bool) {
 	f, err := os.Stat(path)
 	return f, err == nil || os.IsExist(err)
+}
+
+func appendFile(path, content string) {
+	file, err := os.OpenFile(path, os.O_APPEND|os.O_WRONLY, 0644)
+    if err != nil {
+        panic(err)
+    }
+    defer file.Close()
+    
+    if _, err := file.WriteString(content); err != nil {
+        panic(err)
+    }
 }
