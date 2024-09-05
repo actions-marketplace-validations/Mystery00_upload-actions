@@ -22,8 +22,6 @@ var (
 )
 
 func main() {
-	str, _ := os.Getwd()
-	fmt.Printf("pwd: %s\n", str)
 	files, _ := filepath.Glob("*")
 	fmt.Println(files)
 	if signUrl == "" {
@@ -96,8 +94,6 @@ func main() {
 	}
 
 	resId := gjson.Get(string(responseBody), "resourceId").String()
-	//fmt.Printf(`echo "resId=%s" >> $GITHUB_OUTPUT`, resId)
-	//fmt.Printf(`::set-output name=resId::%s`, resId)
 	appendFile(os.Getenv("GITHUB_OUTPUT"), fmt.Sprintf("resId=%s", resId))
 }
 
